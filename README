@@ -1,0 +1,43 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3917
+
+A simple script that finds the Python module using the keyword under the cursor and yank the import statement into the unnamed register "" so you can put it anywhere with the command 'p'.
+
+
+Usage
+=====
+
+1. Move cursor to a word you'd like to import.
+
+2. Type ``<Leader>fi``
+
+3. You'll be prompted with a list of import statements to yank into unnamed register ``'"'``.
+
+4. Type a number.
+
+5. Put the import statement anywhere you like with ``p``.  *Tip: quickly jump back to last cursor position with `` (double backticks)*
+
+
+Options
+=======
+let g:tagport_aliases = {}
+    There are times when importing from a different package is preferred as apposed to the actual Python module the class is defined. 
+    For example, Django's ``Model`` is declared in ``django.db.models.base``. However, it is a common practice that ``Model`` 
+    is imported from ``django.db.models`` instead.
+
+    To do that, declare the following in ``.vimrc``::
+
+        let g:tagport_aliases = {'django.db.models.base': 'django.db.models'}
+
+    The next time you search for ``Model``, ``from django.db.models import Model`` is listed instead.
+
+
+let g:tagport_ignore = []
+    ``models`` can be found in many places, but not all are useful. You can hide any entry with ``g:tagport_ignore``.
+    For example, if you want to hide all ``models`` from ``migrations`` directory, declare the following in ``.vimrc``::
+        
+        let g:tagport_ignore = ['.*migrations.*']
+
+
+Links:
+  1. README - http://bit.ly/xTL1qn
+  2. Screenshot - http://bit.ly/zqOfsv
